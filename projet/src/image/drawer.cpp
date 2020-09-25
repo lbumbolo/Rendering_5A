@@ -36,8 +36,20 @@ namespace cpe
 
 void draw_line(image& im,ivec2 const& p0,ivec2 const& p1,color const& c)
 {
-    /*************************************
-    // TO DO
+    int x0 = p0.x();
+    int y0 = p0.y();
+    int x1 = p1.x();
+    int y1 = p1.y();
+
+    line_discrete line;
+    bresenham({x0,y0},{x1,y1},line);
+
+    for(int k = 0;k<line.size();++k)
+    {
+        im(line[k])=c;
+        std::cout<<line[k]<<std::endl;
+    }
+
     /*************************************
     // Affichez une ligne sur l'image
     //

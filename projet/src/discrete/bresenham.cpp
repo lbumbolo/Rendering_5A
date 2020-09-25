@@ -31,7 +31,29 @@ namespace cpe
 void bresenham_first_octant(ivec2 const& p0,ivec2 const& p1,line_discrete& line,int const octant)
 {
     /*************************************
-    // TO DO
+    */
+    int x0 = p0.x();
+    int y0 = p0.y();
+    int x1 = p1.x();
+    int y1 = p1.y();
+
+    int dx = x1-x0;
+    int dy = y1-y0;
+    int m = 2*dy;
+    int e = -dx;
+
+    int y = y0;
+    for (int x = x0; x<=x1; ++x)
+    {
+        ivec2 const p_octant = symmetry_octant_inverse({x,y},octant);
+        line.push_back(p_octant);
+        e += m;
+        if( e>=0)
+        {
+            ++y;
+            e-=2*dx;
+        }
+    }
     /*************************************
     // Completez l'algorithme de Bresenham
     //
@@ -51,7 +73,13 @@ void bresenham_first_octant(ivec2 const& p0,ivec2 const& p1,line_discrete& line,
 
 void bresenham(ivec2 const& p0,ivec2 const& p1,line_discrete& line)
 {
-    bresenham_first_octant(p0,p1,line,0);
+    // Compute the corresponding p0,p1 in the symmetrical first octant
+    int const octant = octant_number(p0,p1);
+
+    ivec2 const p0_octant = symmetry_octant(p0,octant);
+    ivec2 const p1_octant = symmetry_octant(p1,octant);
+
+    bresenham_first_octant(p0_octant,p1_octant,line,octant);
 
     // Sanity check ensuring the discrete line is correctly computed
     ASSERT_CPE(line.size()>0,"Incorrect size of line in Bresenham ( line.size()="+std::to_string(line.size())+" )");

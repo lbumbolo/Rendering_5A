@@ -36,24 +36,67 @@ int main(int argc,char *argv[])
 
     try
     {
-        int const Nx = 40;
-        int const Ny = 25;
+        //////////////////Colorer des segments
+        int const Nx = 21;
+        int const Ny = 21;
 
         image im(Nx,Ny);
         im.fill({1.0f,1.0f,1.0f});
 
-        // Change two pixels 
-        im(20,10) = color(1.0f,1.0f,0.0f);
-        im(21,10) = color(1.0f,0.0f,0.0f);
+        // // Change two pixels 
+        // im(5,5) = color(1.0f,1.0f,0.0f);
+        // im(20,10) = color(1.0f,0.0f,0.0f);
 
-        // create a line of pixels
-        for(int k=0;k<20;++k)
-            im(10+k,5) = color(k/20.0f,0.0f,1.0f-k/20.0f);
+        // // create a line of pixels
+        // for(int k=0;k<20;++k)
+        //     im(10+k,5) = color(k/20.0f,0.0f,1.0f-k/20.0f);
 
-        // create a column of pixels
-        for(int k=0;k<15;++k)
-            im(5,5+k) = color(k/15.0f,k/15.0f,k/15.0f);
+        // // create a column of pixels
+        // for(int k=0;k<15;++k)
+        //     im(5,5+k) = color(k/15.0f,k/15.0f,k/15.0f);
 
+        // //////////////////Colorer avec Line
+        // // creation d’une ligne discrete
+        // line_discrete line; 
+        // // ajout d’une position
+        // line.push_back(ivec2(4,5));
+        // // autre methode d’ajout
+        // line.push_back({5,6});
+        // ivec2 const p(6,7);
+        // // autre methode d’ajout
+        // line.push_back(p);
+        // // affichage du contenu de la ligne
+        // std::cout<<line<<std::endl;
+        
+        // //premiere methode de parcours de la ligne
+        // for(int k=0;k<line.size();++k)
+        // std::cout<<line[k]<<" ";
+        // std::cout<<std::endl;
+        // //deuxieme methode de parcours de la ligne
+        // for(ivec2 const& p : line)
+        // std::cout<<p<<" ";
+        // std::cout<<std::endl;
+
+        // //////////////////Bresenham
+        // line_discrete line;
+        // bresenham({5,5},{12,9},line);
+        // std::cout<<line<<std::endl;
+
+        draw_line(im,{10,10},{20,15},color(0.5f,0.5f,0.5f));
+
+        draw_line(im,{10,10},{20,5},color(1.0f,0.0f,0.0f));
+
+        draw_line(im,{10,10},{15,0},color(0.0f,1.0f,0.0f));
+
+        draw_line(im,{10,10},{5,0},color(0.0f,0.0f,1.0f));
+
+        draw_line(im,{10,10},{0,5},color(1.0f,1.0f,0.0f));
+
+        draw_line(im,{10,10},{0,15},color(1.0f,0.0f,1.0f));
+
+        draw_line(im,{10,10},{5,20},color(0.0f,1.0f,1.0f));
+
+        draw_line(im,{10,10},{15,20},color(0.0f,0.0f,0.0f));
 
         im.save("mon_image.ppm");
 

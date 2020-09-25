@@ -1,0 +1,11 @@
+ASSERT FAILED: [line[line.size()-1]==p1] with message: Incorrect last point in Bresenham ( line[end]=(15,15) ; p1=(15,20) )
+In file [/home/louis/Documents/5A/Rendu/TP/tp_projectif/projet/src/discrete/bresenham.cpp] 
+In function [bresenham]
+At line 80 
+
+0       0x5630ad680986 ./pgm(+0x17986) [0x5630ad680986]
+1       0x5630ad69a09a ./pgm(+0x3109a) [0x5630ad69a09a]
+2       0x5630ad69ddca ./pgm(+0x34dca) [0x5630ad69ddca]
+3       0x5630ad66cf3c ./pgm(+0x3f3c) [0x5630ad66cf3c]
+4       0x7fa3522bcb97 __libc_start_main + 231
+5       0x5630ad66db0a ./pgm(+0x4b0a) [0x5630ad66db0a]
