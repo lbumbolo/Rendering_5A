@@ -64,8 +64,21 @@ void draw_line(image& im,ivec2 const& p0,ivec2 const& p1,color const& c)
 void draw_line(image& im,ivec2 const& p0,ivec2 const& p1,color const& c0,color const& c1)
 {
 
-    /*************************************
-    // TO DO
+    int x0 = p0.x();
+    int y0 = p0.y();
+    int x1 = p1.x();
+    int y1 = p1.y();
+
+    line_discrete line;
+    bresenham({x0,y0},{x1,y1},line);
+
+    for(int k = 0;k<line.size();++k)
+    {
+        line_interpolation_parameter interpolation(line);
+        im(line[k])=(1.0f-float(interpolation[k]))*c1+float(interpolation[k])*c0;
+        std::cout<<line[k]<<std::endl;
+    }
+
     /*************************************
     // Affichez une ligne de couleur variable entre p0 de couleur c0, et p1 de couleur c1
     //
@@ -83,6 +96,15 @@ void draw_line(image& im,ivec2 const& p0,ivec2 const& p1,color const& c0,color c
     */
 }
 
+
+void draw_triangle_wireframe(image& im,
+                   ivec2 const& p0,ivec2 const& p1,ivec2 const& p2,color const& c)
+{
+
+    draw_line(im,p0,p1,c);
+    draw_line(im,p1,p2,c);
+    draw_line(im,p2,p0,c);
+}
 
 
 void draw_triangle(image& im,

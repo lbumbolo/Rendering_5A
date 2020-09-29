@@ -82,6 +82,7 @@ int main(int argc,char *argv[])
         // bresenham({5,5},{12,9},line);
         // std::cout<<line<<std::endl;
 
+        /**************** CADRAN
         draw_line(im,{10,10},{20,15},color(0.5f,0.5f,0.5f));
 
         draw_line(im,{10,10},{20,5},color(1.0f,0.0f,0.0f));
@@ -97,6 +98,32 @@ int main(int argc,char *argv[])
         draw_line(im,{10,10},{5,20},color(0.0f,1.0f,1.0f));
 
         draw_line(im,{10,10},{15,20},color(0.0f,0.0f,0.0f));
+        */
+
+        /**************** CADRAN DEGRADE
+        draw_line(im,{10,10},{20,15},color(0.5f,0.5f,0.5f),color(1.0f,1.0f,1.0f));
+
+        draw_line(im,{10,10},{20,5},color(1.0f,0.0f,0.0f),color(1.0f,1.0f,1.0f));
+
+        draw_line(im,{10,10},{15,0},color(0.0f,1.0f,0.0f),color(1.0f,1.0f,1.0f));
+
+        draw_line(im,{10,10},{5,0},color(0.0f,0.0f,1.0f),color(1.0f,1.0f,1.0f));
+
+        draw_line(im,{10,10},{0,5},color(1.0f,1.0f,0.0f),color(1.0f,1.0f,1.0f));
+
+        draw_line(im,{10,10},{0,15},color(1.0f,0.0f,1.0f),color(1.0f,1.0f,1.0f));
+
+        draw_line(im,{10,10},{5,20},color(0.0f,1.0f,1.0f),color(1.0f,1.0f,1.0f));
+
+        draw_line(im,{10,10},{15,20},color(0.0f,0.0f,0.0f),color(1.0f,1.0f,1.0f));
+        */
+
+        // draw_triangle_wireframe(im,{0,5},{10,20},{20,5},color(1.0f,0.0f,0.0f));
+
+        draw_triangle_wireframe(im , {15,12},{2,17},{6,3} , {0,0,0});
+        auto scanline = triangle_scanline_factory({15,12},{2,17},{6,3} ,
+        0.0f,1.0f,2.0f);
+        std::cout<<scanline<<std::endl;
 
         im.save("mon_image.ppm");
 
